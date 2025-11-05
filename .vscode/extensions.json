@@ -1,0 +1,59 @@
+{
+  "recommendations": [
+    //CORE - Essential extensions for all projects
+    "esbenp.prettier-vscode", //Prettier - Code formatter
+    "pdconsec.vscode-print", //Print
+    "tal7aouy.rainbow-bracket", //Raibow Brackets
+    "dzhavat.bracket-pair-toggler", //Bracket Pair Colorization Toggler
+
+    //Themes
+    "dracula-theme.theme-dracula", //Dracula Theme Official
+    "PKief.material-icon-theme", //Material Icon Theme
+
+    //Git
+    "mhutchie.git-graph", //Git Graph
+    "donjayamanne.githistory", //Git History
+    "GitHub.copilot", //GitHub Copilot
+    "GitHub.copilot-chat", //GitHub Copilot Chat
+
+    //PYTHON - Essential for Python development
+    "ms-python.python", //Python
+    "ms-python.pylint", //Pylint
+    "ms-python.vscode-pylance", //Pylance
+    "njpwerner.autodocstring", //Auto Docstring
+    "ms-python.debugpy", //Python Debugger
+    "ms-python.vscode-python-envs", //Python Environments
+    //"ms-python.autopep8"
+    //"ms-python.black-formatter"
+
+    //Django
+    //"batisteo.vscode-django", //Django
+    //"batisteo.vscode-django-snippets", //Django Snippets ?????
+    //"bibhasdn.django-html", //Django Template
+    //"qwtel.sqlite-viewer", //SQLite Viewer
+
+    //Ppostman - API Testing
+    //"Postman.postman-for-vscode", //Postman
+
+    //Jupyter
+
+    //Markdown
+    "yzhang.markdown-all-in-one", //Markdown All in One
+    "bierner.markdown-preview-github-styles", //Markdown Preview Github Styling
+
+    //Snippets
+    "adpyke.codesnap", //CodeSnap
+
+    //Docker
+    "ms-azuretools.vscode-docker", //Docker
+    "ms-azuretools.vscode-containers" //Container Tools
+
+    //HTML & CSS
+    //"ecmel.vscode-html-css", //HTML CSS Support
+    //"formulahendry.auto-rename-tag", //Auto Rename Tag
+    //"Zignd.html-css-class-completion", // CSS class completion
+    //"naumovs.color-highlight", //Color Highlight
+    //"kamikillerto.vscode-colorize", //Colorize
+    //"ritwickdey.LiveServer" //Live Server
+  ]
+}

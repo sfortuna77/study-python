@@ -1,0 +1,69 @@
+{
+  // Settings for VSCode
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontSize": 18,
+  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "workbench.tree.indent": 16,
+
+  // Theme Settings
+  "workbench.colorTheme": "Default Dark Modern",
+
+  // Python Interpreter
+  "python.defaultInterpreterPath": "./.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.venvPath": "./.venv",
+
+  // Extension >> Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.useTabs": false,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.bracketSameLine": false,
+  "prettier.tabWidth": 2,
+
+  // language specific
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "batisteo.vscode-django",
+    "editor.tabSize": 2,
+    "prettier.tabWidth": 2
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "html.validate.scripts": false,
+  "html.validate.styles": false,
+  "html.format.templating": true,
+
+  // Extension >> Material Theme settings
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.opacity": 0.8,
+
+  // Django settings
+  "files.associations": {
+    "*.html": "django-html",
+    "*.htm": "django-html",
+    "**/views/**/*.html": "django-html",
+    "*.tpl": "django-html"
+  },
+
+  // Django Template
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+
+  // Emmet settings
+  "emmet.showAbbreviationSuggestions": true,
+  "html-css-class-completion.enableEmmetSupport": false,
+  "postman.settings.dotenv-detection-notification-visibility": false
+}
