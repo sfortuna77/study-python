@@ -1,0 +1,133 @@
+from abc import ABCMeta, abstractmethod
+from typing import Optional
+
+
+class DocumentFactory(metaclass=ABCMeta):
+    def __init__(self, doc_number:Optional[str]=None)->None:
+        self._doc_size=self._set_doc_size()
+        self._doc_number=''
+
+        doc_number=str(doc_number) if doc_number is not None else ''
+        if doc_number:
+            self.set(doc_number)
+    
+    def set(self, doc_number:Optional[str]=None)->None:
+        doc_number=str(doc_number) if doc_number is not None else ''
+        cleaned=self._clean(doc_number)
+        if cleaned and len(cleaned)<self._doc_size:
+            cleaned=str(cleaned).zfill(self._doc_size)
+        self._doc_number=cleaned
+    
+    def __str__(self)->str:
+        return self.formatted
+
+    def __repr__(self)->str:
+        return f'{self.document}({self.get}|{self.formatted}) -> {self.validate}'
+
+    @property
+    def get(self)->str:
+        return self._doc_number
+    
+    @property
+    def get_doc_size(self)->str:
+        return self._doc_size
+    
+    @property
+    def formatted(self)->str:
+        if not self.get:
+            return ''
+        return self._format()
+    
+    @property
+    def validate(self)->bool:
+        if not self.get or self.get=='':
+            return False
+        if not self._is_valid():
+            return False
+        return True
+    
+    @property
+    def document(self)->str:
+        return self.__class__.__name__
+    
+    @abstractmethod
+    def _set_doc_size(self)->int:
+        pass
+
+    @abstractmethod
+    def _clean(self, doc_number)-> str:
+        pass
+
+    @abstractmethod
+    def _format(self)->str:
+        pass
+
+    @abstractmethod
+    def _is_valid(self)->bool:
+        pass
+
+
+class CPF(DocumentFactory):
+    def _set_doc_size(self)->int:
+        return 11
+
+    def _clean(self, doc_number:str)->str:
+        if not doc_number:
+            cleaned= ''
+        else:
+            cleaned=''.join(char for char in doc_number if char.isdigit())
+        return cleaned
+    
+    def _format(self)->str:
+        doc_number=self.get
+        if not self.validate:
+            return ''
+        formatted=f'{doc_number[:3]}.{doc_number[3:6]}.{doc_number[6:9]}-{doc_number[9:]}'
+        return formatted
+    
+    def _is_valid(self)->bool:
+        if len(self.get) != self.get_doc_size:
+            return False
+        if self.get==self.get[0]*self.get_doc_size:
+            return False
+        first_digit=self._calculate_digit(9)
+        if first_digit != int(self.get[9]):
+            return False
+        second_digit=self._calculate_digit(10)
+        if second_digit != int(self.get[10]):
+            return False
+        return True
+        
+    def _calculate_digit(self, position:int)->int:
+        digits=self.get
+        total=0
+        for i in range(position):
+            total+=int(digits[i])*(position+1-i)
+        remainder=total%11
+        return 0 if remainder<2 else 11-remainder
+
+
+if __name__ == '__main__':
+    
+    def test_cpf(doc_number, expected)->None:
+        cpf=CPF()
+        cpf.set(doc_number)
+        validate='✅' if cpf.validate else '❌'
+        print('-'*50)
+        print(f'Valor enviado: {doc_number} {expected} -> {validate}')
+        print(f'get: {cpf.get}')
+        print(f'formatted: {cpf.formatted}')
+        print(f'document: {cpf.document}')
+        print(f'validate: {cpf.validate}')
+        print(f'str: {cpf}')
+        print(f'repr: {repr(cpf)}')
+
+    test_cpf('26463036889', '✅')
+    test_cpf('264.630.368-89','✅')
+    test_cpf('26463036888','❌')
+    test_cpf('26463089','❌')
+    test_cpf('11111111111','❌')
+    test_cpf('ADS26463036889', '✅')
+    test_cpf('ASD','❌')
+    test_cpf('','❌')
+    
